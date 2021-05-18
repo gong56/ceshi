@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>javascript测试代码</title>
+<script type="text/javascript">
+<!--
+
+function onBridgeReady(){
+   var arr = document.getElementById('txt').value.split("||")
+
+   WeixinJSBridge.invoke(
+      'getBrandWCPayRequest', {
+         "appId":arr[0],    
+         "timeStamp":arr[1],         
+         "nonceStr":arr[2],     
+         "package":arr[3],     
+         "signType":arr[4],           
+         "paySign":arr[5] 
+      },
+      function(res){
+      if(res.err_msg == "get_brand_wcpay_request:ok" ){
+
+      } 
+   }); 
+}
+if (typeof WeixinJSBridge == "undefined"){
+   if( document.addEventListener ){
+       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+   }else if (document.attachEvent){
+       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+   }
+}else{
+   onBridgeReady();
+}
+//-->
+</script>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="">
+<label>
+
+<textarea id='txt' rows='30' cols='50'></textarea>
+******
+
+<input name="button" type="submit" id="button" onclick="onBridgeReady()" value="按钮" />
+
+******
+</label>
+</form>
+</body>
+</html>
+
